@@ -1,16 +1,24 @@
--- [[ Main.lua ]] --
--- This is the script stored on GitHub
+-- [[ Main.lua - TwixxHubV2 ]] --
 
-local StarterGui = game:GetService("StarterGui")
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/Library.lua"))()
 
--- Send a notification so we know it loaded
-StarterGui:SetCore("SendNotification", {
-    Title = "TwixxHub",
-    Text = "Main script loaded successfully!",
-    Duration = 5
+local Window = Library:CreateWindow({
+    Title = 'TwixxHub V2',
+    Center = true,
+    AutoShow = true,
 })
 
-print("[TwixxHub] The main script is running.")
+local Tabs = {
+    Main = Window:AddTab('Main'),
+    Settings = Window:AddTab('Settings'),
+}
 
--- YOUR GUI CODE GOES HERE --
--- local Library = loadstring(...)
+local LeftGroupBox = Tabs.Main:AddLeftGroupbox('Player')
+
+LeftGroupBox:AddButton('Unload Hub', function()
+    Library:Unload()
+end)
+
+LeftGroupBox:AddLabel('Welcome to TwixxHub V2')
+
+Library:Notify("TwixxHub Loaded Successfully!")
